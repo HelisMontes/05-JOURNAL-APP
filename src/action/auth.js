@@ -41,7 +41,6 @@ export const startRegisterForEmail = (email, password, name ) => {
             })
     }
 }
-
 export const login = (uid, displayName) => ({
     type: type.login,
     payload: {
@@ -49,3 +48,12 @@ export const login = (uid, displayName) => ({
         displayName 
     }
 });
+export const startLogout = () =>{
+    return async (dispatch) =>{
+        await firebase.auth().signOut()
+        dispatch( logout() )
+    }
+}
+export const logout = ()=>({
+    type: type.logout
+})
