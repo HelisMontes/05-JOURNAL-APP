@@ -8,10 +8,13 @@ export const startLoginEmailPassword = ( email, password ) =>{
      * tambien se pude hacer cualquier petición asíncrona ya sea un fetch(), 
      * subir archivo o incluso otro dispatch
      */
-    return ( dispatch ) => {
-        setTimeout(() => {
-            dispatch( login ( 1223, 'Pedro' ) )
-        }, 3500);
+    return async ( dispatch ) => {
+        try {
+            const { user } = await firebase.auth().signInWithEmailAndPassword( email, password );
+            dispatch( login ( user.uid, user.displayName ) );
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 export const startGoogleLogin = () => {
@@ -22,6 +25,19 @@ export const startGoogleLogin = () => {
             });
     }
 }
+export const startRegisterForEmail = (email, password, name ) => {
+    return( dispatch ) =>{
+        firebase.auth().createUserWithEmailAndPassword (email, password)
+            .then ( async ({ user }) =>{
+                await user.updateProfile({ displayName:name })
+                dispatch( login (user.uid, user.displayName ) );
+            })
+            .catch ( error =>{
+                console.log(error)
+            })
+    }
+}
+
 export const login = (uid, displayName) => ({
     type: type.login,
     payload: {

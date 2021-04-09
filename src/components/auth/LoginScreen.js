@@ -9,8 +9,8 @@ export const LoginScreen = () => {
     const dispatch = useDispatch();
     
     const [ formValues, handleInputChange ] = useForm({
-        email: 'helismontes@gmail.com',
-        password: '1234567'
+        email: 'jose@gmail.com',
+        password: '123456'
     })
     
     const { email, password } = formValues
@@ -18,7 +18,7 @@ export const LoginScreen = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         console.log( email, password )
-        dispatch( startLoginEmailPassword (1234, 'Helis'))
+        dispatch( startLoginEmailPassword ( email, password ) )
     }
 
     const handleGoogleLogin = () => {

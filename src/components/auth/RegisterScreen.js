@@ -5,6 +5,7 @@ import validator from 'validator'
 
 import { useForm } from '../../hook/useForm';
 import { setError, removeError } from '../../action/ui';
+import { startRegisterForEmail } from '../../action/auth';
 
 export const RegisterScreen = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export const RegisterScreen = () => {
     const handleRegister = (e) => {
         e.preventDefault()
 
-        if ( isValidate() ) return console.log('Form correcto')
+        if ( isValidate() ) dispatch( startRegisterForEmail ( email, password, name ) )
     }
 
     const isValidate = () => {
