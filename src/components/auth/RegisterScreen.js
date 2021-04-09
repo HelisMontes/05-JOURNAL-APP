@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
 import validator from 'validator'
 
 import { useForm } from '../../hook/useForm';
+import { setError, removeError } from '../../action/ui';
 
 export const RegisterScreen = () => {
+    const dispatch = useDispatch();
+    const state = useSelector( state => state.UI );
+    const { msgError } = state    
     const [formValues, handleImputchange ] = useForm({
         name: 'Jose',
         email: 'jose@gmail.com',
@@ -22,15 +27,16 @@ export const RegisterScreen = () => {
 
     const isValidate = () => {
         if( name.trim().length === 0 ){
-            console.log('Name is required');
+            dispatch( setError ('Name is required') ); 
             return false;
         }else if( !validator.isEmail( email ) ){
-            console.log('Email is noy validate')
+            dispatch( setError ('Email is noy validate') )
             return false;
         } else if( password !== password2 || password.trim().length <5 ){
-            console.log('Passwaord shouldbe at least 6 characters and match each other');
+            dispatch( setError ('Passwaord shouldbe at least 6 characters and match each other') );
             return false;
         }
+        dispatch( removeError () );
         return true
     }
     
@@ -39,7 +45,13 @@ export const RegisterScreen = () => {
             <h3 className="auth__title">Register</h3>
 
             <form onSubmit= { handleRegister }>
-
+                {
+                    msgError && (
+                        <div className="auth__alert-error">
+                            { msgError }
+                        </div>
+                    )
+                }
                 <input 
                     type="text"
                     placeholder="Name"
