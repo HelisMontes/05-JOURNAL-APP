@@ -3,5 +3,7 @@ export const type ={
     logout: '[Auth] Logut',
 
     msgSetError : '[UI] Set Error',
-    msgRemoveError : '[UI] Remove Error'
+    msgRemoveError : '[UI] Remove Error',
+    uiStartLoading: '[UI] Start loading',
+    uiFinishLoading: '[UI] Finish loading',
 }

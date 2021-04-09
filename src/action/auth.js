@@ -1,5 +1,6 @@
 import { type } from "../types/types";
 import { firebase, googleAuthProvider } from '../firebase/firebase-config'
+import { finishLoading, startLoading } from "./ui";
 
 export const startLoginEmailPassword = ( email, password ) =>{
     
@@ -9,11 +10,14 @@ export const startLoginEmailPassword = ( email, password ) =>{
      * subir archivo o incluso otro dispatch
      */
     return async ( dispatch ) => {
+        dispatch( startLoading() )
         try {
             const { user } = await firebase.auth().signInWithEmailAndPassword( email, password );
             dispatch( login ( user.uid, user.displayName ) );
+            dispatch ( finishLoading() )
         } catch (error) {
             console.log(error);
+            dispatch ( finishLoading() )
         }
     }
 }
