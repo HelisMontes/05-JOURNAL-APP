@@ -1,8 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { JournalEntry } from './JournalEntry';
 
 export const JournalEntries = () => {
+    const { notes } = useSelector( state => state.notes );
 
+    console.log(notes)
     const entries = [1,2,3,4,5 ];
 
 
@@ -10,8 +13,8 @@ export const JournalEntries = () => {
         <div className="journal__entries">
             
             {
-                entries.map( value => (
-                    <JournalEntry key={ value } />
+                notes.map( value => (
+                    <JournalEntry key={ value.id } />
                 ))
             }
 

@@ -17,7 +17,7 @@
 import { type } from "../types/types";
 
  const initialState = {
-    note: [],
+    notes: [],
     activate: null,
 }
 
@@ -29,6 +29,11 @@ export const notesReducer = (state = initialState, action ) => {
                 activate: {
                     ...action.payload
                 }
+            }
+        case type.notesLoad:
+            return{
+                ... state,
+                notes: [...action.notas]
             }
         default:
             return state;
