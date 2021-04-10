@@ -36,7 +36,7 @@ export const AppRouter = () => {
             setChecking(false) 
         });
     }, [dispatch, setChecking, setIsLoggedIn]);
-    if ( checking ) return <h1>Espere...</h1>
+    if ( checking ) return <h1>wait...</h1>
     return (
         <Router>
             <div>
