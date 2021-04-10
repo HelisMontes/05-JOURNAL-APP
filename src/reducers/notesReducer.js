@@ -32,7 +32,7 @@ export const notesReducer = (state = initialState, action ) => {
             }
         case type.notesLoad:
             return{
-                ... state,
+                ...state,
                 notes: [...action.notas]
             }
         default:
