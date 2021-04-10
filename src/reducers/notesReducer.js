@@ -14,6 +14,8 @@
  *  } 
  */
 
+import { type } from "../types/types";
+
  const initialState = {
     note: [],
     activate: null,
@@ -21,7 +23,13 @@
 
 export const notesReducer = (state = initialState, action ) => {
     switch (action.type) {
-        
+        case type.notesActive:
+            return {
+                ...state,
+                activate: {
+                    ...action.payload
+                }
+            }
         default:
             return state;
     }

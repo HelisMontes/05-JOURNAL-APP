@@ -8,7 +8,7 @@ export const type ={
     uiFinishLoading: '[UI] Finish loading',
 
     notesAddNew: '[Notes] New note',
-    notesActivate: '[Notes] Set active note',
+    notesActive: '[Notes] Set active note',
     notesLoad : '[Notes] Load notes',
     notesUpdated: '[Notes] update note',
     notesFileUrl: '[Notes] Updated image url',
