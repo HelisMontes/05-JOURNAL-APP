@@ -1,8 +1,9 @@
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNotes";
-import { type } from '../types/types'
+import { type } from '../types/types';
+
 export const startNewNotes = () => {
     return async ( dispatch, getState ) =>{
         const { uid } = getState().auth;
@@ -25,20 +26,20 @@ export const activeNote = ( id, note ) => ({
     }
 });
 
-export const startLoadingNotes = ( uid ) => {
-    return async( dispatch )=>{
-        const notes = await loadNotes( uid )
-        dispatch( setNotes ( notes ) );
+export const startLoadingNotes = (uid) => {
+    return async(dispatch) => {
+        const notes = await loadNotes(uid)
+        dispatch(setNotes(notes));
     }
 }
 
-export const setNotes = ( notes ) =>({
+export const setNotes = (notes) =>({
     type: type.notesLoad,
     notas: notes
 })
 
 export const updateNote = ({id, title, body, url}) => { 
-    return async( dispatch, getState ) => {
+    return async(dispatch, getState) => {
         try {
             const { uid } = getState().auth;
             const dataUpdate ={
@@ -47,9 +48,9 @@ export const updateNote = ({id, title, body, url}) => {
                 url,
                 date: new Date().getTime(),
             }
-            if (!dataUpdate.url) delete dataUpdate.url
+            if (!dataUpdate.url) delete dataUpdate.url;
             await db.doc(`${ uid }/journal/notes/${id}`).update(dataUpdate)    
-            dispatch( refreshNote(id, dataUpdate ) )
+            dispatch(refreshNote(id, dataUpdate ))
             Swal.fire('Note updated', title, 'success')
         } catch (error) {
             Swal.fire('Error', error, 'error')
@@ -57,7 +58,7 @@ export const updateNote = ({id, title, body, url}) => {
     }
 }
 
-export const refreshNote = (id, note ) => ({
+export const refreshNote = (id, note) => ({
     type: type.notesUpdated,
     payload: {
         id, 

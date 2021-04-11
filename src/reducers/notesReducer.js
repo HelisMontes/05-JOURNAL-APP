@@ -21,7 +21,7 @@ import { type } from "../types/types";
     activate: null,
 }
 
-export const notesReducer = (state = initialState, action ) => {
+export const notesReducer = (state = initialState, action) => {
     switch (action.type) {
         case type.notesActive:
             return {
@@ -31,7 +31,7 @@ export const notesReducer = (state = initialState, action ) => {
                 }
             }
         case type.notesLoad:
-            return{
+            return {
                 ...state,
                 notes: [...action.notas]
             }
