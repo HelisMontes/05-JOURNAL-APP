@@ -4,16 +4,15 @@ import { useDispatch } from 'react-redux';
 
 import { activeNote } from '../../action/notes'
 
-export const JournalEntry = ({ notes, url }) => {
-    
+export const JournalEntry = ({ notes }) => {
+    console.log(notes)
     const dispatch = useDispatch();
     const { body, date, id, title } = notes
     const noteDate = moment(date);
     const HandleShowNote = () =>{
         dispatch( 
             activeNote (id, {
-                ...notes,
-                url
+                ...notes
             })
         )
     }
@@ -23,12 +22,12 @@ export const JournalEntry = ({ notes, url }) => {
             onClick={ HandleShowNote }
         >
             {
-                url &&
+                notes.url &&
                 <div 
                     className="journal__entry-picture"
                     style={{
                         backgroundSize: 'cover',
-                        backgroundImage: `url( ${url} )`
+                        backgroundImage: `url( ${notes.url} )`
                     }}
                 ></div>
                 
