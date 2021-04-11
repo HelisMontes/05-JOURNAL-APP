@@ -23,6 +23,7 @@ export const NoteScreen = () => {
             
             <NotesAppBar 
                 date = { note.date }
+                note = { values }
             />
 
             <div className="notes__content">
