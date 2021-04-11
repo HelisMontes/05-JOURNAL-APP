@@ -1,7 +1,7 @@
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNotes";
 import { type } from '../types/types'
-export const startnEWNotes = () => {
+export const startNewNotes = () => {
     return async ( dispatch, getState ) =>{
         const { uid } = getState().auth;
 
