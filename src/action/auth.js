@@ -7,7 +7,7 @@ import { finishLoading, startLoading } from "./ui";
 export const startLoginEmailPassword = ( email, password ) =>{
     
     /**
-     * @param  ( dispatch ) es enviado mediante el applyMiddleware( thunk )
+     * @docs ( dispatch ) es enviado mediante el applyMiddleware( thunk )
      * tambien se pude hacer cualquier petición asíncrona ya sea un fetch(), 
      * subir archivo o incluso otro dispatch
      */

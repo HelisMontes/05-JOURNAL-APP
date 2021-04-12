@@ -107,8 +107,8 @@ export const startDeleting = ( id ) => {
           'Your file has been deleted.',
           'success'
         )
-        await db.doc(`/${ uid }/journal/notes/${id}`).delete(); 
-        dispatch( deleteNoteOfList ( id ))
+          await db.doc(`/${ uid }/journal/notes/${id}`).delete(); 
+          dispatch( deleteNoteOfList ( id ))
       };
      } catch (error) {
        throw error;

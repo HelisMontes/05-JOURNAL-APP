@@ -2,6 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+/**
+ * EN proyectos de producción esto no se hace.
+ * por efectos de seguridad
+ * esto deberia ir en un archivo que se coloca ex (.env)
+ * @example config.json, archivos que no estan en el repo
+ */
 const firebaseConfig = {
     apiKey: "AIzaSyAuw9UxL7QN_jM_cULOYjZ2axDtOVHWmB8",
     authDomain: "react-app-journal-12010.firebaseapp.com",
