@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { activeNote } from '../../action/notes'
 
 export const JournalEntry = ({ notes }) => {
-    console.log(notes)
     const dispatch = useDispatch();
     const { body, date, id, title } = notes
     const noteDate = moment(date);
