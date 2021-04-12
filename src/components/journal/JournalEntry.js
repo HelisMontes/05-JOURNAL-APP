@@ -17,7 +17,7 @@ export const JournalEntry = ({ notes }) => {
     }
     return (
         <div 
-            className="journal__entry pointer"
+            className="journal__entry pointer animate__animated animate__fadeInLeft animate__faster"
             onClick={ HandleShowNote }
         >
             {
