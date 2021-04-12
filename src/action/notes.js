@@ -15,6 +15,7 @@ export const startNewNotes = () => {
         }
         const docRef = await db.collection(`${ uid }/journal/notes`).add( newNote );
         dispatch( activeNote( docRef.id, newNote ) );
+        dispatch ( addNewNoteInList( docRef.id, newNote ))
     }
 }   
 
@@ -25,6 +26,14 @@ export const activeNote = ( id, note ) => ({
         ...note
     }
 });
+
+const addNewNoteInList = ( id, note ) => ({
+  type: type.notesAddNew,
+  payload: {
+    id,
+    ...note
+  }
+})
 
 export const startLoadingNotes = ( uid ) => {
     return async( dispatch )=>{
@@ -107,8 +116,8 @@ export const startDeleting = ( id ) => {
           'Your file has been deleted.',
           'success'
         )
-          await db.doc(`/${ uid }/journal/notes/${id}`).delete(); 
-          dispatch( deleteNoteOfList ( id ))
+        await db.doc(`/${ uid }/journal/notes/${id}`).delete(); 
+        dispatch( deleteNoteOfList ( id ))
       };
      } catch (error) {
        throw error;
@@ -119,4 +128,8 @@ export const startDeleting = ( id ) => {
 export const deleteNoteOfList = ( id ) => ({
   type: type.notesDelete,
   payload: id
+});
+
+export const cleanNotesAndLogout = () => ({
+  type: type.NotesLogoutCleaning
 })
